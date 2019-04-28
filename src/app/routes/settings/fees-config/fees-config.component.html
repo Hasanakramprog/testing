@@ -1,0 +1,216 @@
+<div class="card card-default">
+  <div class="card-header">Add Fees Config</div>
+  <div class="card-body">
+    <form (ngSubmit)="create(createForm)" #createForm="ngForm">
+      <div class="row">
+
+        <div class="col-md-3 form-group">
+          <label for="title">Title</label>
+          <input class="form-control mb-2 mr-sm-2" id="title" type="text" placeholder="Title" [(ngModel)]="newItem.title"
+            required name="title" #titleControl="ngModel" />
+
+
+          <div *ngIf="createForm.submitted && titleControl.invalid">
+            <span *ngIf="titleControl.errors.required" class="text-danger">This field is required</span>
+
+          </div>
+
+        </div>
+
+        <div class="form-group col-md-3">
+          <label translate="">Beneficiary</label>
+          <ng-select [items]="beneficiaries" name="beneficiaries" bindValue="value" bindLabel="label" required
+            [(ngModel)]="newItem.beneficiary" #beneficiaryC="ngModel">
+          </ng-select>
+
+          <div *ngIf="createForm.submitted && beneficiaryC.invalid">
+            <span *ngIf="beneficiaryC.errors.required" class="text-danger">This field is required</span>
+
+          </div>
+
+        </div>
+
+        <div class="col-md-3 form-group">
+          <label for="amount">Amount</label>
+          <input class="form-control mb-2 mr-sm-2" id="amount" type="text" placeholder="Amount" [(ngModel)]="newItem.amount"
+            required name="amount" #amountC="ngModel" />
+
+          <div *ngIf="createForm.submitted && amountC.invalid">
+            <span *ngIf="amountC.errors.required" class="text-danger">This field is required</span>
+
+          </div>
+
+
+        </div>
+
+
+        <div class="form-group col-md-3">
+          <label translate="">Amount Type</label>
+          <ng-select [items]="amountTypes" name="amountTypes"
+           bindValue="value" bindLabel="label" required [(ngModel)]="newItem.amount_type"
+            #amountTypeC="ngModel">
+          </ng-select>
+
+          <div *ngIf="createForm.submitted && amountTypeC.invalid">
+            <span *ngIf="amountTypeC.errors.required" class="text-danger">This field is required</span>
+
+          </div>
+        </div>
+
+
+        <div class="form-group col-md-3">
+          <label translate="">Provider Claim</label>
+          <ng-select [items]="providerClaims" name="providerClaims"
+           bindValue="value" bindLabel="label" required
+            [(ngModel)]="newItem.provider_claim" #providerClaimC="ngModel">
+          </ng-select>
+
+          <div *ngIf="createForm.submitted && providerClaimC.invalid">
+            <span *ngIf="providerClaimC.errors.required" class="text-danger">This field is required</span>
+
+          </div>
+        </div>
+
+
+        <div class="form-group col-md-3">
+          <label translate="">Company Claim</label>
+          <ng-select [items]="companyClaims" name="companyClaims"
+           bindValue="value" bindLabel="label" required
+            [(ngModel)]="newItem.company_claim" #companyClaimC="ngModel">
+          </ng-select>
+
+          <div *ngIf="createForm.submitted && companyClaimC.invalid">
+            <span *ngIf="companyClaimC.errors.required" class="text-danger">This field is required</span>
+
+          </div>
+
+        </div>
+
+        <div class="col-md-3 form-group text-center">
+          <button class="btn btn-primary mb-2" type="submit">Add</button>
+
+        </div>
+
+
+
+
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="card card-default">
+  <div class="card-header">Fees</div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-2">
+        <div class="list-group mb0">
+          <a href="javascript:void(0)" class="list-group-item" [ngClass]="{'selected': selectedItem === item}" *ngFor="let item of items"
+            (click)="selectItem(item)">
+            {{item.title}}
+          </a>
+        </div>
+      </div>
+      <div class="col-md-10">
+        <div *ngIf="selectedItem">
+
+          <form (ngSubmit)="update()" #editForm="ngForm">
+
+            <div class="form-group">
+              <label >Title</label>
+              <input class="form-control mb-2 mr-sm-2"
+                type="text" placeholder="Title" [(ngModel)]="selectedItem.title"
+                required name="titleE" #titleControlE="ngModel" />
+
+
+              <div *ngIf="editForm.submitted && titleControlE.invalid">
+                <span *ngIf="titleControlE.errors.required" class="text-danger">This field is required</span>
+
+              </div>
+
+            </div>
+
+            <div class="form-group">
+              <label translate="">Beneficiary</label>
+              <ng-select [items]="beneficiaries" 
+              name="beneficiariesE" bindValue="value" bindLabel="label" required
+                [(ngModel)]="selectedItem.beneficiary" #beneficiaryE="ngModel">
+              </ng-select>
+
+              <div *ngIf="editForm.submitted && beneficiaryE.invalid">
+                <span *ngIf="beneficiaryE.errors.required" class="text-danger">This field is required</span>
+
+              </div>
+
+            </div>
+
+            <div class="form-group">
+              <label >Amount</label>
+              <input class="form-control mb-2 mr-sm-2"
+              type="text" placeholder="Amount" [(ngModel)]="selectedItem.amount"
+                required name="amountE" #amountE="ngModel" />
+
+              <div *ngIf="editForm.submitted && amountE.invalid">
+                <span *ngIf="amountE.errors.required" class="text-danger">This field is required</span>
+
+              </div>
+
+
+            </div>
+
+
+            <div class="form-group ">
+              <label translate="">Amount Type</label>
+              <ng-select [items]="amountTypes" name="amountTypesE"
+               bindValue="value" bindLabel="label" required
+                [(ngModel)]="selectedItem.amount_type" #amountTypeE="ngModel">
+              </ng-select>
+
+              <div *ngIf="editForm.submitted && amountTypeE.invalid">
+                <span *ngIf="amountTypeE.errors.required" class="text-danger">This field is required</span>
+
+              </div>
+            </div>
+
+
+            <div class="form-group ">
+              <label translate="">Provider Claim</label>
+              <ng-select [items]="providerClaims" name="providerClaims" 
+              bindValue="value" bindLabel="label" required
+                [(ngModel)]="selectedItem.provider_claim" #providerClaimE="ngModel">
+              </ng-select>
+
+              <div *ngIf="editForm.submitted && providerClaimE.invalid">
+                <span *ngIf="providerClaimE.errors.required" class="text-danger">This field is required</span>
+
+              </div>
+            </div>
+
+
+            <div class="form-group ">
+              <label translate="">Company Claim</label>
+              <ng-select [items]="companyClaims" name="companyClaims"
+               bindValue="value" bindLabel="label" required
+                [(ngModel)]="selectedItem.company_claim" #companyClaimE="ngModel">
+              </ng-select>
+
+              <div *ngIf="editForm.submitted && companyClaimE.invalid">
+                <span *ngIf="companyClaimE.errors.required" class="text-danger">This field is required</span>
+
+              </div>
+
+            </div>
+
+            <button class="btn btn-primary mb-2" type="submit">Update</button>
+
+            <a href="javascript:void(0)" class="btn btn-danger ml-2 mb-2" popoverTitle='Delete'
+                popoverMessage='Are you sure  ?' mwlConfirmationPopover placement="right" (confirm)="delete()">Delete</a>
+
+
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

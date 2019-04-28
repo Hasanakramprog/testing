@@ -1,0 +1,121 @@
+<div class="card card-default">
+    <div class="card-header">Add Plan</div>
+    <div class="card-body">
+        <form (ngSubmit)="create(createForm)" #createForm="ngForm">
+            <div class="row">
+
+                <div class="col-md-3 form-group">
+                    <label for="title">Title</label>
+                    <input class="form-control mb-2 mr-sm-2" id="title" type="text" placeholder="Title" [(ngModel)]="newItem.title"
+                        required name="title" #titleControl="ngModel" />
+
+
+                    <div *ngIf="createForm.submitted && titleControl.invalid">
+                        <span *ngIf="titleControl.errors.required" class="text-danger">This field is required</span>
+
+                    </div>
+
+                </div>
+                <div class="col-md-3 form-group">
+
+                    <label for="from">From</label>
+                    <input class="form-control mb-2 mr-sm-2" id="from" type="text" placeholder="From" [(ngModel)]="newItem.from"
+                        required name="from" #fromControl="ngModel" />
+                    <div *ngIf="createForm.submitted && fromControl.invalid">
+                        <span *ngIf="fromControl.errors.required" class="text-danger">This field is required</span>
+
+                    </div>
+
+
+
+                </div>
+
+                <div class="col-md-3 form-group">
+
+                    <label for="to">To</label>
+                    <input class="form-control mb-2 mr-sm-2" id="to" type="text" placeholder="To" [(ngModel)]="newItem.to"
+                        required name="to" #toControl="ngModel" />
+
+                    <div *ngIf="createForm.submitted && toControl.invalid">
+                        <span *ngIf="toControl.errors.required" class="text-danger">This field is required</span>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-3 form-group text-center">
+                    <button class="btn btn-primary mb-2" type="submit">Add</button>
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+        </form>
+    </div>
+</div>
+
+<div class="card card-default">
+    <div class="card-header">Plans</div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="list-group mb0">
+                    <a href="javascript:void(0)" class="list-group-item" [ngClass]="{'selected': selectedItem === item}"
+                        *ngFor="let item of items" (click)="selectItem(item)">
+                        {{item.title}}
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-10">
+                <div *ngIf="selectedItem">
+                    <form (ngSubmit)="update()" #editForm="ngForm">
+                        <label for="editTitle">Title</label>
+                        <input class="form-control mb-2 mr-sm-2" id="editTitle" type="text" placeholder="Title"
+                            [(ngModel)]="selectedItem.title" required name="editTitle" #editTitleControl="ngModel" />
+
+                        <div *ngIf="editForm.submitted && editTitleControl.invalid">
+                            <span *ngIf="editTitleControl.errors.required" class="text-danger">This field is required</span>
+
+                        </div>
+
+
+
+                        <label for="editFrom">From</label>
+                        <input class="form-control mb-2 mr-sm-2" id="editFrom" type="text" placeholder="From"
+                            [(ngModel)]="selectedItem.from" required name="editFrom" #editFromControl="ngModel" />
+
+                        <div *ngIf="editForm.submitted && editFromControl.invalid">
+                            <span *ngIf="editFromControl.errors.required" class="text-danger">This field is required</span>
+
+                        </div>
+
+
+                        <label for="editTo">To</label>
+                        <input class="form-control mb-2 mr-sm-2" id="editTo" type="text" placeholder="To" [(ngModel)]="selectedItem.to"
+                            required name="editTo" #editToControl="ngModel" />
+
+                        <div *ngIf="editForm.submitted && editToControl.invalid">
+                            <span *ngIf="editToControl.errors.required" class="text-danger">This field is required</span>
+
+                        </div>
+
+
+                        <button class="btn btn-primary mb-2" type="submit">Update</button>
+
+                        <a href="javascript:void(0)" class="btn btn-danger ml-2 mb-2" popoverTitle='Delete'
+                            popoverMessage='Are you sure  ?' mwlConfirmationPopover placement="right" (confirm)="delete()">Delete</a>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
