@@ -1,3 +1,364 @@
-<p>
-  customers works!
-</p>
+<div>
+    <form (ngSubmit)="create(createForm)" #createForm="ngForm">
+<div class="card card-default">
+  <div class="card-header">Main info</div>
+  <div class="card-body">
+
+          <div class="row">
+
+              <div class="col-md-6 form-group">
+                  <label for="name">Name</label>
+                  <input class="form-control mb-2 mr-sm-2" id="name" type="text" placeholder="name" [(ngModel)]="newItem.name"
+                      required name="name" #nameControl="ngModel" />
+
+
+                  <div *ngIf="createForm.submitted && nameControl.invalid">
+                      <span *ngIf="nameControl?.errors.required" class="text-danger">This field is required</span>
+
+                  </div>
+
+              </div>
+              <div class="col-md-6 form-group">
+
+                  <label for="birthplace">Birth place</label>
+                  <input class="form-control mb-2 mr-sm-2" id="birthplace" type="text" placeholder="birthplace" [(ngModel)]="newItem.birth_place"
+                      required name="birthplace" #birthplaceControl="ngModel" />
+                  <div *ngIf="createForm.submitted && birthplaceControl.invalid">
+                      <span *ngIf="birthplaceControl?.errors.required" class="text-danger">This field is required</span>
+
+                  </div>
+
+
+
+              </div>
+          </div>
+          <div class="row">
+
+              <div class="col-md-6 form-group">
+
+                  <label for="surname">Surname</label>
+                  <input class="form-control mb-2 mr-sm-2" id="surname" type="text" placeholder="surname" [(ngModel)]="newItem.sur_name"
+                      required name="surname" #surnameControl="ngModel" />
+
+                  <div *ngIf="createForm.submitted && surnameControl.invalid">
+                      <span *ngIf="surnameControl?.errors.required" class="text-danger">This field is required</span>
+
+                  </div>
+
+              </div>
+              <div class="col-md-6 form-group">
+
+                <label for="birthdate">Birth date</label>
+
+                    <input class="form-control mb-2 mr-sm-2" type="date" id="birthdate" name="birthdate" [(ngModel)]="newItem.birth_date" #birthdateControl="ngModel" useValueAsDate>
+                <div *ngIf="createForm.submitted && birthdateControl.invalid">
+                    <span *ngIf="birthdateControl?.errors.required" class="text-danger">This field is required</span>
+
+                </div>
+
+            </div>
+
+
+          </div>
+
+
+          <div class="row">
+
+            <div class="col-md-6 form-group">
+
+                <label for="enrollment_number">Enrollment Number</label>
+                <input class="form-control mb-2 mr-sm-2" id="enrollment_number" type="number" placeholder="enrollment_number" [(ngModel)]="newItem.enrollment_number"
+                    required name="enrollment_number" #enrollment_numberControl="ngModel" />
+
+                <div *ngIf="createForm.submitted && enrollment_numberControl.invalid">
+                    <span *ngIf="enrollment_numberControl?.errors.required" class="text-danger">This field is required</span>
+
+                </div>
+
+            </div>
+            <div class="col-md-6 form-group">
+
+              <label for="landline">landline</label>
+              <input class="form-control mb-2 mr-sm-2" id="landline" type="tel" placeholder="landline" [(ngModel)]="newItem.landline"
+                  required name="landline" #landlineControl="ngModel"  ngModel pattern="^(961(3|70|71)|(03|70|71))\d{6}$"/>
+
+              <div *ngIf="createForm.submitted && landlineControl.invalid">
+                  <span *ngIf="landlineControl?.errors.required" class="text-danger">This field is required</span>
+
+              </div>
+              <div *ngIf="createForm.submitted && landlineControl.invalid">
+                <span *ngIf="landlineControl?.errors.pattern" class="text-danger">This field is not phone number</span>
+
+            </div>
+
+          </div>
+
+        </div>
+        <div class="row">
+
+          <div class="col-md-6 form-group">
+
+              <label for="enrollment_place">Enrollment Place</label>
+              <input class="form-control mb-2 mr-sm-2" id="enrollment_place" type="text" placeholder="enrollment place" [(ngModel)]="newItem.enrollment_place"
+                  required name="enrollment_place" #enrollment_placeControl="ngModel" />
+
+              <div *ngIf="createForm.submitted && enrollment_placeControl.invalid">
+                  <span *ngIf="enrollment_placeControl?.errors.required" class="text-danger">This field is required</span>
+
+              </div>
+
+          </div>
+          <div class="col-md-6 form-group">
+
+            <label for="Mobile">Mobile</label>
+            <input class="form-control mb-2 mr-sm-2" id="Mobile" type="tel" placeholder="Mobile" [(ngModel)]="newItem.mobile"
+                required name="Mobile" #MobileControl="ngModel" ngModel pattern="^(961(3|70|71)|(03|70|71))\d{6}$" />
+
+            <div *ngIf="createForm.submitted && MobileControl.invalid">
+                <span *ngIf="MobileControl?.errors.required" class="text-danger">This field is required</span>
+
+            </div>
+            <div *ngIf="createForm.submitted && MobileControl.invalid">
+              <span *ngIf="MobileControl?.errors.pattern" class="text-danger">This field is not phone number</span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-6 form-group">
+
+            <label for="father_name">Father name</label>
+            <input class="form-control mb-2 mr-sm-2" id="father_name" type="text" placeholder="father_name" [(ngModel)]="newItem.father_name"
+                required name="father_name" #father_nameControl="ngModel" />
+
+            <div *ngIf="createForm.submitted && father_nameControl.invalid">
+                <span *ngIf="father_nameControl?.errors.required" class="text-danger">This field is required</span>
+
+            </div>
+
+        </div>
+        <div class="col-md-6 form-group">
+
+          <label for="otherMobile">Other Mobile</label>
+          <input class="form-control mb-2 mr-sm-2" id="Mobile" type="tel" placeholder="otherMobile" [(ngModel)]="newItem.other_mobile"
+              required name="otherMobile" #otherMobileControl="ngModel" ngModel pattern="^(961(3|70|71)|(03|70|71))\d{6}$" />
+
+          <div *ngIf="createForm.submitted && otherMobileControl.invalid">
+              <span *ngIf="otherMobileControl?.errors.required" class="text-danger">This field is required</span>
+
+          </div>
+          <div *ngIf="createForm.submitted && otherMobileControl.invalid">
+            <span *ngIf="otherMobileControl?.errors?.pattern" class="text-danger">This field is not phone number</span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-md-6 form-group">
+
+          <label for="mother_name">Mother name</label>
+          <input class="form-control mb-2 mr-sm-2" id="mother_name" type="text" placeholder="mother_name" [(ngModel)]="newItem.mother_name"
+              required name="mother_name" #mother_nameControl="ngModel" />
+
+          <div *ngIf="createForm.submitted && mother_nameControl.invalid">
+              <span *ngIf="mother_nameControl?.errors.required" class="text-danger">This field is required</span>
+
+          </div>
+
+      </div>
+      <div class="col-md-6 form-group">
+
+        <label for="address">Address</label>
+        <input class="form-control mb-2 mr-sm-2" id="address" type="text" placeholder="address" [(ngModel)]="newItem.address"
+            required name="address" #addressControl="ngModel" />
+
+        <div *ngIf="createForm.submitted && addressControl.invalid">
+            <span *ngIf="addressControl?.errors.required" class="text-danger">This field is required</span>
+
+        </div>
+
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col-md-6 form-group">
+
+        <label for="mother_enrollment_number">Mother enrollment number</label>
+        <input class="form-control mb-2 mr-sm-2" id="mother_enrollment_number" type="number" placeholder="mother_enrollment_number" [(ngModel)]="newItem.mother_enrollment_number"
+            required name="mother_enrollment_number" #mother_enrollment_numberControl="ngModel" />
+
+        <div *ngIf="createForm.submitted && mother_enrollment_numberControl.invalid">
+            <span *ngIf="mother_enrollment_numberControl?.errors.required" class="text-danger">This field is required</span>
+
+        </div>
+
+    </div>
+  </div>
+
+
+  </div>
+</div>
+<div class="card card-default">
+  <div class="card-header">Social</div>
+  <div class="card-body">
+    <div class="row">
+<div class="col-md-6 form-group">
+    <label for="social_status">Social status</label>
+    <select class="form-control mb-2 mr-sm-2" id="social_status" [(ngModel)]="newItem.social_status" required name="social_status" #social_statusControl="ngModel">
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="opel">Opel</option>
+        <option value="audi">Audi</option>
+      </select>
+      <div *ngIf="createForm.submitted && social_statusControl.invalid">
+          <span *ngIf="social_statusControl?.errors.required" class="text-danger">This field is required</span>
+
+      </div>
+</div>
+<div class="col-md-6 form-group">
+    <label for="living_type">Living Type</label>
+    <select class="form-control mb-2 mr-sm-2" id="living_type" [(ngModel)]="newItem.living_type" required name="living_type" #living_typeControl="ngModel">
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="opel">Opel</option>
+        <option value="audi">Audi</option>
+      </select>
+      <div *ngIf="createForm.submitted && living_typeControl.invalid">
+          <span *ngIf="living_typeControl?.errors.required" class="text-danger">This field is required</span>
+
+      </div>
+  </div>
+    </div>
+      <div class="row">
+
+          <div class="col-md-6 form-group">
+
+              <label for="spouse_name">spouse name</label>
+              <input class="form-control mb-2 mr-sm-2" id="spouse_name" type="text" placeholder="spouse_name" [(ngModel)]="newItem.spouse_name"
+                  required name="spouse_name" #spouse_nameControl="ngModel" />
+
+              <div *ngIf="createForm.submitted && spouse_nameControl.invalid">
+                  <span *ngIf="spouse_nameControl?.errors.required" class="text-danger">This field is required</span>
+
+              </div>
+
+          </div>
+          <div class="col-md-6 form-group">
+
+              <label for="children_no">Children No</label>
+              <input class="form-control mb-2 mr-sm-2" id="children_no" type="number" placeholder="children_no" [(ngModel)]="newItem.children_no"
+                  required name="children_no" #children_noControl="ngModel" />
+
+              <div *ngIf="createForm.submitted && children_noControl.invalid">
+                  <span *ngIf="children_noControl?.errors.required" class="text-danger">This field is required</span>
+
+              </div>
+
+          </div>
+        </div>
+    </div>
+    </div>
+    <div class="card card-default">
+        <div class="card-header">Work</div>
+        <div class="card-body">
+          <div class="row">
+      <div class="col-md-6 form-group">
+          <label for="main_work">Main Work</label>
+                    <input class="form-control mb-2 mr-sm-2" id="main_work" type="text" placeholder="main_work" [(ngModel)]="newItem.main_work"
+                        required name="main_work" #main_workControl="ngModel"  />
+
+                    <div *ngIf="createForm.submitted && main_workControl.invalid">
+                        <span *ngIf="main_workControl?.errors.required" class="text-danger">This field is required</span>
+
+                    </div>
+
+
+
+      </div>
+      <div class="col-md-6 form-group">
+          <label for="work_phone">Work Phone</label>
+                    <input class="form-control mb-2 mr-sm-2" id="work_phone" type="tel" placeholder="work_phone" [(ngModel)]="newItem.work_phone"
+                        required name="work_phone" #work_phoneControl="ngModel" ngModel pattern="^(961(3|70|71)|(03|70|71))\d{6}$" />
+
+                    <div *ngIf="createForm.submitted && work_phoneControl.invalid">
+                        <span *ngIf="work_phoneControl?.errors.required" class="text-danger">This field is required</span>
+
+                    </div>
+                    <div *ngIf="createForm.submitted && work_phoneControl.invalid">
+                      <span *ngIf="work_phoneControl?.errors.pattern" class="text-danger">This field is not phone number</span>
+
+                  </div>
+
+
+        </div>
+          </div>
+            <div class="row">
+
+                <div class="col-md-6 form-group">
+
+                    <label for="sallary">Sallary</label>
+                    <input class="form-control mb-2 mr-sm-2" id="sallary" type="number" placeholder="sallary" [(ngModel)]="newItem.salary"
+                        required name="sallary" #sallaryControl="ngModel" />
+
+                    <div *ngIf="createForm.submitted && sallaryControl.invalid">
+                        <span *ngIf="sallaryControl?.errors.required" class="text-danger">This field is required</span>
+
+                    </div>
+
+                </div>
+                <div class="col-md-6 form-group">
+
+                    <label for="work_address">Work Address</label>
+                    <textarea  rows="4" cols="50" class="form-control mb-2 mr-sm-2" id="work_address" placeholder="work_address" [(ngModel)]="newItem.work_address"
+                        required name="work_address" #work_addressControl="ngModel" >
+                        </textarea>
+
+                    <div *ngIf="createForm.submitted && work_addressControl.invalid">
+                        <span *ngIf="work_addressControl?.errors.required" class="text-danger">This field is required</span>
+
+                    </div>
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6 form-group"style="margin-top: -82px;">
+                    <label for="other_income">Other Income</label>
+                    <input class="form-control mb-2 mr-sm-2" id="other_income" type="number" placeholder="other_income" [(ngModel)]="newItem.other_income"
+                        required name="other_income" #other_incomeControl="ngModel" />
+
+                    <div *ngIf="createForm.submitted && other_incomeControl.invalid">
+                        <span *ngIf="other_incomeControl?.errors.required" class="text-danger">This field is required</span>
+
+                    </div>
+
+                </div>
+                <div class="col-md-6 form-group">
+
+
+                </div>
+
+              </div>
+              <div class="row" style="
+              float: right;
+              margin-top: -58px;
+          ">
+                <div class="col-md-12" >
+                    <div><button class="btn btn-primary m-5" style="
+                      height: 42px;
+                      width: 122px;
+                  " type="submit">Add</button></div>
+                </div>
+              </div>
+          </div>
+          </div>
+
+</form>
+</div>

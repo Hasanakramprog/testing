@@ -17,7 +17,7 @@ export class PlanComponent implements OnInit {
 
   items;
   newItem = {};
-  selectedItem ; 
+  selectedItem ;
 
   ngOnInit() {
     this.planService.getAll().subscribe(result => {
@@ -48,18 +48,18 @@ export class PlanComponent implements OnInit {
 
   delete(){
     this.planService.delete(this.selectedItem.id).subscribe(result=>{
-     
+
       for (let index = 0; index < this.items.length; index++) {
         const element = this.items[index];
         if(element.id === this.selectedItem.id){
           this.items.splice(index , 1) ;
           this.selectedItem = null ;
           break ;
-          
+
         }
       }
       this.toastr.success("Plan Deleted") ;
-      
+
     });
 
   }

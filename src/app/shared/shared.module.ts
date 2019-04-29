@@ -18,6 +18,7 @@ import {
 
 
 
+
 // https://angular.io/styleguide#!#04-10
 @NgModule({
     imports: [
@@ -42,7 +43,7 @@ import {
         ColorsService
     ],
     declarations: [
-        
+
     ],
     exports: [
         CommonModule,

@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
+import { DateValueAccessorModule } from 'angular-date-value-accessor';
 
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
@@ -17,6 +17,7 @@ import { ErrorHandlerInterceptor } from './core/interceptor/errorhandler.interce
 import { NotificationInterceptor } from './core/interceptor/notification.interceptor';
 import { SettingsModule } from './routes/settings/settings.module';
 
+
 // https://github.com/ocombe/ng2-translate/issues/218
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -24,12 +25,13 @@ export function createTranslateLoader(http: HttpClient) {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     HttpClientModule,
     BrowserModule,
     CoreModule ,
+    DateValueAccessorModule,
     LayoutModule ,
     SharedModule.forRoot(),
     RoutesModule,
