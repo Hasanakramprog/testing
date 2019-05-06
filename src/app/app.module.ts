@@ -18,6 +18,7 @@ import { NotificationInterceptor } from './core/interceptor/notification.interce
 import { SettingsModule } from './routes/settings/settings.module';
 
 
+
 // https://github.com/ocombe/ng2-translate/issues/218
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
