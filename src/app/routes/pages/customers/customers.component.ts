@@ -47,7 +47,7 @@ export class CustomersComponent implements OnInit {
       } else {
         this.customerService.update(this.id, this.newItem).subscribe(() => {
           this.toastr.success('Updated ');
-         this.router.navigate(['/customers/view']);
+         this.router.navigate(['pages/customer/view']);
         });
       }
     }

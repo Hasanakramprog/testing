@@ -1,0 +1,28 @@
+<kendo-grid
+  (edit)="editHandler($event)" (cancel)="cancelHandler($event)"
+  (save)="saveHandler($event)" (remove)="removeHandler($event)"
+  (add)="addHandler($event)"
+  [kendoGridBinding]="gridData"
+  [pageSize]="10"
+  [pageable]="true"
+  [sortable]="true"
+  [filterable]="true"
+  [groupable]="true"
+  [height]="510">
+  <kendo-grid-column field="Name" [width]="140"></kendo-grid-column>
+  <kendo-grid-column field="quantity" [width]="120"></kendo-grid-column>
+  <kendo-grid-column field="Category" [width]="100"></kendo-grid-column>
+  <kendo-grid-column field="description" [width]="130"></kendo-grid-column>
+  <kendo-grid-command-column title="command" width="220">
+    <ng-template kendoGridCellTemplate let-isNew="isNew" let-dataItem>
+      <!-- edit command directive, will be visible when not in edit mode -->
+      <button kendoGridEditCommand [primary]="true">Edit</button>
+      <!-- remove command directive, will be visible when not in edit mode -->
+      <button kendoGridRemoveCommand>Delete</button>
+      <!-- save command directive, will be visible when in edit mode -->
+      <button kendoGridSaveCommand>Save</button>
+      <!-- cancel command directive, will be visible when in edit mode -->
+      <button kendoGridCancelCommand>{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
+    </ng-template>
+  </kendo-grid-command-column>
+</kendo-grid>

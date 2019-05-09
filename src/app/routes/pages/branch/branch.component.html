@@ -1,0 +1,52 @@
+<div>
+  <form (ngSubmit)="create(createForm)" #createForm="ngForm">
+    <div class="card card-default">
+      <div class="card-header">Branch Form</div>
+      <div class="card-body">
+
+        <div class="row">
+
+          <div class="col-md-6 form-group">
+            <label for="name">Name</label>
+            <input class="form-control mb-2 mr-sm-2" id="name" type="text" placeholder="name" [(ngModel)]="newItem.name"
+                   required name="name" #nameControl="ngModel"/>
+
+
+            <div *ngIf="createForm.submitted && nameControl.invalid">
+              <span *ngIf="nameControl?.errors.required" class="text-danger">This field is required</span>
+
+            </div>
+
+          </div>
+          <div class="col-md-6 form-group">
+
+            <label for="quantity">Location</label>
+            <input class="form-control mb-2 mr-sm-2" id="Location" type="text" placeholder="Location"
+                   [(ngModel)]="newItem.Location"
+                   required name="Location" #LocationControl="ngModel"/>
+            <div *ngIf="createForm.submitted && LocationControl.invalid">
+              <span *ngIf="LocationControl?.errors.required" class="text-danger">This field is required</span>
+
+            </div>
+
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 form-group">
+            <div>
+              <button class="btn btn-primary m-5" style="
+                      height: 42px;
+                      width: 122px;
+                      float: right;
+                  " type="submit">Add
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </form>
+</div>

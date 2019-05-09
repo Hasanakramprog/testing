@@ -25,19 +25,47 @@ const Customers = {
   icon: 'icon-chemistry',
   submenu: [
     {
-      text: 'View',
-      link: '/customers/view'
-    }, {
       text: 'Add',
-      link: '/customers/add'
+      link: '/pages/customer/add'
+    }, {
+      text: 'List',
+      link: '/pages/customer/view'
     },
   ]
 };
-
-
+const Items = {
+  text: 'Items',
+  link: '/Items',
+  icon: 'icon-chemistry',
+  submenu: [
+    {
+      text: 'Add',
+      link: '/pages/item/add'
+    }, {
+      text: 'List',
+      link: '/pages/item/view'
+    },
+  ]
+};
+const branch = {
+  text: 'Branchs',
+  link: '/branch',
+  icon: 'icon-chemistry',
+  submenu: [
+    {
+      text: 'Add',
+      link: '/pages/branch/add'
+    }, {
+      text: 'List',
+      link: '/pages/branch/view'
+    },
+  ]
+};
 export const menu = [
   headingMain,
   Settings,
-  Customers
+  Customers,
+  Items,
+  branch
 
 ];

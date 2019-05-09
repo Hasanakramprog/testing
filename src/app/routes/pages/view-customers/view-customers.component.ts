@@ -71,7 +71,6 @@ export class ViewCustomersComponent implements OnInit {
       this.customerservice.getAll().subscribe((res) => {
 
         this.customers = res;
-        this.loadCustomer();
       }));
 
     this.toasr.success('Edited');
@@ -109,7 +108,7 @@ export class ViewCustomersComponent implements OnInit {
 
 
   edit(data) {
-    this.router.navigate(['/customers/add', {id: data.id}]).then();
+    this.router.navigate(['/pages/customer/add', {id: data.id}]).then();
   }
 
 

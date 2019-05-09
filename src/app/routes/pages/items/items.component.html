@@ -1,0 +1,85 @@
+<div>
+  <form (ngSubmit)="create(createForm)" #createForm="ngForm">
+<div class="card card-default">
+  <div class="card-header">Item Form</div>
+  <div class="card-body">
+
+    <div class="row">
+
+      <div class="col-md-6 form-group">
+        <label for="name">Name</label>
+        <input class="form-control mb-2 mr-sm-2" id="name" type="text" placeholder="name" [(ngModel)]="newItem.name"
+               required name="name" #nameControl="ngModel"/>
+
+
+        <div *ngIf="createForm.submitted && nameControl.invalid">
+          <span *ngIf="nameControl?.errors.required" class="text-danger">This field is required</span>
+
+        </div>
+
+      </div>
+      <div class="col-md-6 form-group">
+
+        <label for="quantity">Quantity</label>
+        <input class="form-control mb-2 mr-sm-2" id="quantity" type="number" placeholder="quantity"
+               [(ngModel)]="newItem.quantity"
+               required name="quantity" #quantityControl="ngModel"/>
+        <div *ngIf="createForm.submitted && quantityControl.invalid">
+          <span *ngIf="quantityControl?.errors.required" class="text-danger">This field is required</span>
+
+        </div>
+
+
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="col-md-6 form-group">
+
+        <label for="Category">Category</label>
+        <select class="form-control mb-2 mr-sm-2" id="Category" [(ngModel)]="newItem.Category" required
+                name="Category" #CategoryControl="ngModel">
+          <option value="volvo">Volvo</option>
+          <option value="saab">Saab</option>
+          <option value="opel">Opel</option>
+          <option value="audi">Audi</option>
+        </select>
+        <div *ngIf="createForm.submitted && CategoryControl.invalid">
+          <span *ngIf="CategoryControl?.errors.required" class="text-danger">This field is required</span>
+
+        </div>
+
+
+      </div>
+      <div class="col-md-6 form-group">
+
+        <label for="Description">Description</label>
+
+        <textarea rows="4" cols="50" class="form-control mb-2 mr-sm-2" id="Description" placeholder="Description"
+                  [(ngModel)]="newItem.Description"
+                  required name="work_address" #DescriptionControl="ngModel">
+                        </textarea>
+
+        <div *ngIf="createForm.submitted && DescriptionControl.invalid">
+          <span *ngIf="DescriptionControl?.errors.required" class="text-danger">This field is required</span>
+
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 form-group">
+        <div>
+        <button class="btn btn-primary m-5" style="
+                      height: 42px;
+                      width: 122px;
+                      float: right;
+                  " type="submit">Add
+        </button>
+          </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+  </form>
+</div>

@@ -10,7 +10,7 @@ export const routes = [
         children: [
             { path: 'home', loadChildren: './home/home.module#HomeModule' },
             { path: 'settings', loadChildren: './settings/settings.module#SettingsModule' },
-            { path: 'customers', loadChildren: './pages/pages.module#PagesModule' },
+            { path: 'pages', loadChildren: './pages/pages.module#PagesModule' },
 
         ]
         , canActivate: [UserRouteAccessService]
