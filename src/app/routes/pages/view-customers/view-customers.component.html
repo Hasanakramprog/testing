@@ -1,66 +1,38 @@
-<div *ngIf="customers">
-  <table class="table table-striped table-primary">
-    <thead class="">
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Father name</th>
-      <th scope="col">Surname</th>
-      <th scope="col">Enrollment Place</th>
-      <th scope="col">Enrollment Number</th>
-      <th scope="col">Mother Name</th>
-      <th scope="col">Mother Enrollment Number</th>
-      <th scope="col">Birth Place</th>
-      <th scope="col">Birth Date</th>
-      <th scope="col">Landline</th>
-      <th scope="col">Mobile</th>
-      <th scope="col">Other Mobile</th>
-      <th scope="col">Address</th>
-      <th scope="col">Social Status</th>
-      <th scope="col">Living Type</th>
-      <th scope="col">Children Number</th>
-      <th scope="col">Spouse Name </th>
-      <th scope="col">Main work</th>
-      <th scope="col">Salary</th>
-      <th scope="col">Other Income</th>
-      <th scope="col">Work Phone</th>
-      <th scope="col">Work Address</th>
-      <th scope="col">Update</th>
-      <th scope="col">Delete</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let customer of customers.data"  class="table-info">
-      <td>{{customer.name}}</td>
-      <td>{{customer.father_name}}</td>
-      <td>{{customer.sur_name}}</td>
-      <td>{{customer.enrollment_place}}</td>
-      <td>{{customer.enrollment_number}}</td>
-      <td>{{customer.mother_name}}</td>
-      <td>{{customer.mother_enrollment_number}}</td>
-      <td>{{customer.birth_place}}</td>
-      <td>{{customer.birth_date}}</td>
-      <td>{{customer.landline}}</td>
-      <td>{{customer.mobile}}</td>
-      <td>{{customer.other_mobile}}</td>
-      <td>{{customer.address}}</td>
-      <td>{{customer.social_status}}</td>
-      <td>{{customer.living_type}}</td>
-      <td>{{customer.children_no}}</td>
-      <td>{{customer.spouse_name}}</td>
-      <td>{{customer.main_work}}</td>
-      <td>{{customer.salary}}</td>
-      <td>{{customer.other_income}}</td>
-      <td>{{customer.work_phone}}</td>
-      <td>{{customer.work_address}}</td>
-      <td><a [routerLink]="['/customers/edit',customer.id]" class="btn btn-green">Update
-      </a></td>
-      <td><a href="javascript:void(0)" class="btn btn-danger ml-2 mb-2" popoverTitle='Delete'
-             popoverMessage='Are you sure  ?' mwlConfirmationPopover placement="left" (confirm)="delete(customer.id)">Delete</a></td>
-    </tr>
+<kendo-grid
+  (edit)="editHandler($event)" (cancel)="cancelHandler($event)"
+  (save)="saveHandler($event)" (remove)="removeHandler($event)"
+  (add)="addHandler($event)"
+  (pageChange)="pageChange($event)"
+  [data]="gridView"
+  [pageSize]="pageSize"
+  [loading]="loading"
+  [pageable]="true"
+  [skip]="skip"
+  [height]="410"
+>
+  <ng-template kendoGridToolbarTemplate>
+  </ng-template>
+  <kendo-grid-column field="id" editor="numeric" width="130" [editable]="false"></kendo-grid-column>
+  <kendo-grid-column field="name"  editor="text"width="200"></kendo-grid-column>
+  <kendo-grid-column field="father_name"  editor="text"width="200"></kendo-grid-column>
+  <kendo-grid-column field="enrollment_place"  editor="text"width="200"></kendo-grid-column>
+  <kendo-grid-column field="enrollment_number"  editor="text"width="200"></kendo-grid-column>
+  <kendo-grid-column field="mother_name"  editor="text"width="200"></kendo-grid-column>
 
-    </tbody>
-  </table>
-  <p>Page {{customers.current_page}} of {{customers.last_page}}</p>
-  <button (click)="prevPage()" [disabled]="!customers.prev_page_url"  class="btn btn-link">Prev</button>
-  <button (click)="nextPage()" [disabled]="!customers.next_page_url" class="btn btn-link">Next</button>
-</div>
+
+
+  <kendo-grid-command-column title="command" width="220">
+    <ng-template kendoGridCellTemplate let-isNew="isNew" let-dataItem>
+      <!-- edit command directive, will be visible when not in edit mode -->
+      <button kendoGridEditCommand [primary]="true">Edit</button>
+      <!-- remove command directive, will be visible when not in edit mode -->
+      <button kendoGridRemoveCommand>Delete</button>
+      <!-- save command directive, will be visible when in edit mode -->
+      <button kendoGridSaveCommand>Save</button>
+      <!-- cancel command directive, will be visible when in edit mode -->
+      <button kendoGridCancelCommand>{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
+      <button class="btn btn-green" (click)="edit(dataItem)">Edit2</button>
+    </ng-template>
+  </kendo-grid-command-column>
+</kendo-grid>
+

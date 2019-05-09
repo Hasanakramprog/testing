@@ -16,6 +16,12 @@ import { AuthExpiredInterceptor } from './core/interceptor/auth-expired.intercep
 import { ErrorHandlerInterceptor } from './core/interceptor/errorhandler.interceptor';
 import { NotificationInterceptor } from './core/interceptor/notification.interceptor';
 import { SettingsModule } from './routes/settings/settings.module';
+import { GridModule } from '@progress/kendo-angular-grid';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogsModule } from '@progress/kendo-angular-dialog';
+
+
+
 
 
 
@@ -44,7 +50,10 @@ export function createTranslateLoader(http: HttpClient) {
         deps: [HttpClient]
       }
     }) ,
-     SettingsModule
+     SettingsModule,
+     GridModule,
+     BrowserAnimationsModule,
+     DialogsModule
   ],
   providers: [
     {

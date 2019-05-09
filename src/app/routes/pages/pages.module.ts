@@ -1,13 +1,16 @@
 import {NgModule} from '@angular/core';
-import {Routes, RouterModule , ActivatedRoute} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 
 
-import {SharedModule} from '../../shared/shared.module';
+import {SharedModule as shared} from '../../shared/shared.module';
 import {LoginComponent} from './login/login.component';
 import {Error404Component} from './error404/error404.component';
 import {Error500Component} from './error500/error500.component';
 import {CustomersComponent} from './customers/customers.component';
 import {ViewCustomersComponent} from './view-customers/view-customers.component';
+import {BodyModule, GridModule, SharedModule} from '@progress/kendo-angular-grid';
+import {DialogModule} from '@progress/kendo-angular-dialog';
+
 
 /* Use this routes definition in case you want to make them lazy-loaded */
 const routes: Routes = [
@@ -21,8 +24,12 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
+    shared,
+    GridModule,
+    RouterModule.forChild(routes),
     SharedModule,
-    RouterModule.forChild(routes)
+    BodyModule,
+    DialogModule
   ],
   declarations: [
     LoginComponent,
@@ -30,7 +37,8 @@ const routes: Routes = [
     Error404Component,
     Error500Component,
     CustomersComponent,
-    ViewCustomersComponent
+    ViewCustomersComponent,
+
   ],
   exports: [
     RouterModule,
@@ -38,6 +46,8 @@ const routes: Routes = [
     Error404Component,
     Error500Component
   ]
+  ,
+  providers: [],
 })
 export class PagesModule {
 }
