@@ -1,16 +1,17 @@
 <kendo-grid
+  appRemoteBinding
   (edit)="editHandler($event)" (cancel)="cancelHandler($event)"
   (save)="saveHandler($event)" (remove)="removeHandler($event)"
   (add)="addHandler($event)"
-  (pageChange)="pageChange($event)"
-  [data]="gridView"
-  [pageSize]="pageSize"
-  [loading]="loading"
+  [filterable]="true"
+  [filter]="bindingDirective.filter"
+  [pageSize]="1"
   [pageable]="true"
-  [skip]="skip"
+  [sortable]="true"
   [height]="410"
 >
   <ng-template kendoGridToolbarTemplate>
+    <button class="btn btn-green" (click)="addnew()">Add new</button>
   </ng-template>
   <kendo-grid-column field="id" editor="numeric" width="130" [editable]="false"></kendo-grid-column>
   <kendo-grid-column field="name"  editor="text"width="200"></kendo-grid-column>

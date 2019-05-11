@@ -14,6 +14,8 @@ import { ItemsComponent } from './items/items.component';
 import { ViewItemsComponent } from './view-items/view-items.component';
 import { BranchComponent } from './branch/branch.component';
 import { ViewBranchComponent } from './view-branch/view-branch.component';
+import { RemoteBindingDirective } from './directives/remote-binding.directive';
+import {CustomerService} from './directives/data.service';
 
 
 /* Use this routes definition in case you want to make them lazy-loaded */
@@ -52,6 +54,7 @@ const routes: Routes = [
     ViewItemsComponent,
     BranchComponent,
     ViewBranchComponent,
+    RemoteBindingDirective,
 
   ],
   exports: [
@@ -61,7 +64,7 @@ const routes: Routes = [
     Error500Component
   ]
   ,
-  providers: [],
+  providers: [CustomerService],
 })
 export class PagesModule {
 }

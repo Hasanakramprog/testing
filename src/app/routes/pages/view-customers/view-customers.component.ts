@@ -1,12 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {CustomerService} from '../../../shared/services/customer.service';
-import {PaginatedCustomer} from '../../../core/models/PaginatedCustomer';
 import {ToastrService} from 'ngx-toastr';
-import {GridDataResult, PageChangeEvent} from '@progress/kendo-angular-grid';
-import {IntlService} from '@progress/kendo-angular-intl';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {RemoteBindingDirective} from '../directives/remote-binding.directive';
+import {CompositeFilterDescriptor} from '@progress/kendo-data-query/dist/npm/filtering/filter-descriptor.interface';
 
+const flatten = filter => {
+  const filters = filter.filters;
+  if (filters) {
+    return filters.reduce((acc, curr) => acc.concat(curr.filters ? flatten(curr) : [curr]), []);
+  }
+  return [];
+};
 @Component({
   selector: 'app-view-customers',
   templateUrl: './view-customers.component.html',
@@ -15,14 +21,10 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class ViewCustomersComponent implements OnInit {
   [x: string]: any;
 
-  public pageSize = 1;
-  public skip = 0;
-  title = 'kindo';
-  customers;
+  @ViewChild(RemoteBindingDirective) public bindingDirective: RemoteBindingDirective;
   formGroup: any;
-  loading = true;
-  public gridView: GridDataResult;
-  constructor(private customerservice: CustomerService, private intl: IntlService, private router: Router, private toasr: ToastrService) {
+  public filter: CompositeFilterDescriptor;
+  constructor(private customerservice: CustomerService, private router: Router, private toasr: ToastrService) {
 
   }
 
@@ -52,29 +54,20 @@ export class ViewCustomersComponent implements OnInit {
   removeHandler({dataItem}) {
     // this.editService.remove(dataItem);
     this.customerservice.delete(dataItem.id).subscribe(() => {
-      for (let index = 0; index < this.customers.length; index++) {
-        const element = this.customers[index];
-        if (element.id === dataItem.id) {
-          this.customers.splice(index, 1);
-          break;
-
-        }
-      }
-
+      this.bindingDirective.rebind();
+      this.toasr.warning('Deleted');
     });
     console.log(dataItem.id);
   }
 
   saveHandler({sender, rowIndex, formGroup}) {
-    const customer = formGroup.value;
-    this.customerservice.update(customer.id, customer).subscribe(() =>
-      this.customerservice.getAll().subscribe((res) => {
-
-        this.customers = res;
-      }));
-
-    this.toasr.success('Edited');
-
+    if (formGroup.valid) {
+      const customer = formGroup.value;
+      this.customerservice.update(customer.id, customer).subscribe(() => {
+        this.bindingDirective.rebind();
+        this.toasr.success('Edited');
+      });
+    }
     // close the editor, that is, revert the row back into view mode
     sender.closeRow(rowIndex);
 
@@ -99,29 +92,13 @@ export class ViewCustomersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.customerservice.getAll().subscribe((res) => {
-      this.customers = res;
-      this.loadCustomer();
-      this.loading = false;
-    });
   }
 
+  addnew() {
+    this.router.navigate(['/pages/customer/add']).then();
+  }
 
   edit(data) {
     this.router.navigate(['/pages/customer/add', {id: data.id}]).then();
-  }
-
-
-  protected pageChange({ skip, take }: PageChangeEvent): void {
-    this.skip = skip;
-    this.pageSize = take;
-    this.loadCustomer();
-  }
-
-  private loadCustomer(): void {
-    this.gridView = {
-      data: this.customers.slice(this.skip, this.skip + this.pageSize),
-      total: this.customers.length
-    };
   }
 }
