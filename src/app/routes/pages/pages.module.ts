@@ -10,11 +10,11 @@ import {CustomersComponent} from './customers/customers.component';
 import {ViewCustomersComponent} from './view-customers/view-customers.component';
 import {BodyModule, GridModule, SharedModule} from '@progress/kendo-angular-grid';
 import {DialogModule} from '@progress/kendo-angular-dialog';
-import { ItemsComponent } from './items/items.component';
-import { ViewItemsComponent } from './view-items/view-items.component';
-import { BranchComponent } from './branch/branch.component';
-import { ViewBranchComponent } from './view-branch/view-branch.component';
-import { RemoteBindingDirective } from './directives/remote-binding.directive';
+import {ItemsComponent} from './items/items.component';
+import {ViewItemsComponent} from './view-items/view-items.component';
+import {BranchComponent} from './branch/branch.component';
+import {ViewBranchComponent} from './view-branch/view-branch.component';
+import {RemoteBindingDirective} from './directives/remote-binding.directive';
 import {CustomerService} from './directives/data.service';
 
 

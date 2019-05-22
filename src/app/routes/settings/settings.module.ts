@@ -1,13 +1,14 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Routes, RouterModule, Router } from '@angular/router';
-import { PlanComponent } from './plan/plan.component';
-import { SharedModule } from 'src/app/shared/shared.module';
-import { FeesConfigComponent } from './fees-config/fees-config.component';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {Routes, RouterModule, Router} from '@angular/router';
+import {PlanComponent} from './plan/plan.component';
+import {SharedModule} from 'src/app/shared/shared.module';
+import {FeesConfigComponent} from './fees-config/fees-config.component';
+import {RoleGuardService} from '../../core/auth/role-guard.service';
 
 const routes: Routes = [
-  { path: 'plans', component: PlanComponent },
-  { path: 'fees_config', component: FeesConfigComponent },
+  {path: 'plans', component: PlanComponent, canActivate: [RoleGuardService]},
+  {path: 'fees_config', component: FeesConfigComponent, canActivate: [RoleGuardService]},
 ];
 
 @NgModule({
@@ -18,7 +19,8 @@ const routes: Routes = [
     SharedModule
   ],
   exports: [
-    RouterModule 
+    RouterModule
   ]
 })
-export class SettingsModule { }
+export class SettingsModule {
+}

@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {RemoteBindingDirective} from '../directives/remote-binding.directive';
 import {CompositeFilterDescriptor} from '@progress/kendo-data-query/dist/npm/filtering/filter-descriptor.interface';
+import {Principal} from '../../../core/auth/principal.service';
 
 const flatten = filter => {
   const filters = filter.filters;
@@ -13,6 +14,7 @@ const flatten = filter => {
   }
   return [];
 };
+
 @Component({
   selector: 'app-view-customers',
   templateUrl: './view-customers.component.html',
@@ -24,7 +26,8 @@ export class ViewCustomersComponent implements OnInit {
   @ViewChild(RemoteBindingDirective) public bindingDirective: RemoteBindingDirective;
   formGroup: any;
   public filter: CompositeFilterDescriptor;
-  constructor(private customerservice: CustomerService, private router: Router, private toasr: ToastrService) {
+
+  constructor(private customerservice: CustomerService, private router: Router, private toasr: ToastrService, private pri: Principal) {
 
   }
 
@@ -92,6 +95,7 @@ export class ViewCustomersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.pri.isAdmin();
   }
 
   addnew() {

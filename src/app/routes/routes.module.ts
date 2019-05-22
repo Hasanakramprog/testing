@@ -5,6 +5,7 @@ import {MenuService} from '../core/menu/menu.service';
 import {SharedModule} from '../shared/shared.module';
 
 import {menu} from './menu';
+import {menu2} from './regular-menu';
 import {routes} from './routes';
 
 @NgModule({
@@ -20,7 +21,15 @@ import {routes} from './routes';
 })
 
 export class RoutesModule {
+  role;
+
   constructor(public menuService: MenuService, tr: TranslatorService) {
-    menuService.addMenu(menu);
+    // this.role = localStorage.getItem('role').toString();
+    // if (this.role == 'admin') {
+    //   menuService.addMenu(menu);
+    // } else {
+    //   menuService.addMenu(menu2);
+    // }
+
   }
 }

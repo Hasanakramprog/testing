@@ -5,6 +5,7 @@ import { AuthServerProvider } from '../auth/auth-jwt.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ConstantsService } from '../constants/constants.service';
+import {LocalStorage} from 'ngx-webstorage';
 
 @Injectable({ providedIn: 'root' })
 export class LoginService {
@@ -23,6 +24,7 @@ export class LoginService {
                 data => {
                     this.principal.identity(true).then(account => {
                         resolve(data);
+
                     });
                     return cb();
                 },
@@ -58,6 +60,8 @@ export class LoginService {
         let message = { 'command': 'logout' };
         localStorage.setItem('message', JSON.stringify(message));
         localStorage.removeItem('message');
+        localStorage.removeItem('role');
+      localStorage.setItem('role', '');
         this.principal.authenticate(null);
         this.router.navigate(['/login']);
     }
