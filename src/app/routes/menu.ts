@@ -22,15 +22,18 @@ const Settings = {
 const Customers = {
   text: 'Customers',
   link: '/customers',
-  icon: 'icon-chemistry',
+  icon: 'icon-user',
   submenu: [
+     {
+      text: 'List',
+      link: '/pages/customer/view',
+      icon: 'icon-eye',
+    },
     {
       text: 'Add',
-      link: '/pages/customer/add'
-    }, {
-      text: 'List',
-      link: '/pages/customer/view'
-    },
+      link: '/pages/customer/add',
+      icon: 'icon-plus',
+    }
   ]
 };
 const Items = {
@@ -39,26 +42,32 @@ const Items = {
   icon: 'icon-chemistry',
   submenu: [
     {
-      text: 'Add',
-      link: '/pages/item/add'
-    }, {
       text: 'List',
-      link: '/pages/item/view'
+      link: '/pages/item/view',
+      icon: 'icon-eye'
     },
+    {
+      text: 'Add',
+      link: '/pages/item/add',
+      icon: 'icon-plus'
+    }
   ]
 };
 const branch = {
   text: 'Branchs',
   link: '/branch',
-  icon: 'icon-chemistry',
+  icon: 'icon-vector',
   submenu: [
     {
-      text: 'Add',
-      link: '/pages/branch/add'
-    }, {
       text: 'List',
-      link: '/pages/branch/view'
+      link: '/pages/branch/view',
+      icon: 'icon-eye'
     },
+    {
+      text: 'Add',
+      link: '/pages/branch/add',
+      icon: 'icon-plus'
+    }
   ]
 };
 export const menu = [

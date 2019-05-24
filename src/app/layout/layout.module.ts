@@ -46,6 +46,7 @@ export class LayoutModule {
 
   constructor(public menuService: MenuService, tr: TranslatorService) {
     this.role = localStorage.getItem('role').toString();
+    console.log(this.role);
     if (this.role == 'admin') {
       menuService.addMenu(menu);
     } else {

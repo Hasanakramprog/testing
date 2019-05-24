@@ -60,8 +60,6 @@ export class LoginService {
         let message = { 'command': 'logout' };
         localStorage.setItem('message', JSON.stringify(message));
         localStorage.removeItem('message');
-        localStorage.removeItem('role');
-      localStorage.setItem('role', '');
         this.principal.authenticate(null);
         this.router.navigate(['/login']);
     }
