@@ -19,6 +19,16 @@ import { SettingsModule } from './routes/settings/settings.module';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
+import { TreeViewModule } from '@progress/kendo-angular-treeview';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { UploadModule } from '@progress/kendo-angular-upload';
+import { InputsModule } from '@progress/kendo-angular-inputs';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+
+
+
+
+
 
 
 
@@ -53,7 +63,12 @@ export function createTranslateLoader(http: HttpClient) {
      SettingsModule,
      GridModule,
      BrowserAnimationsModule,
-     DialogsModule
+     DialogsModule,
+     TreeViewModule,
+     DropDownsModule,
+     UploadModule,
+     InputsModule,
+     DateInputsModule
   ],
   providers: [
     {

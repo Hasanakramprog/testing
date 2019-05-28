@@ -1,0 +1,218 @@
+<div>
+  <form (ngSubmit)="create(createForm)" #createForm="ngForm">
+    <div class="card card-default">
+      <div class="card-header">Main info</div>
+      <div class="card-body">
+
+        <div class="row">
+
+          <div class="col-md-6 form-group">
+            <label>Loan Item </label>
+            <!--            <input class="form-control mb-2 mr-sm-2" id="name" type="text" placeholder="name" [(ngModel)]="newItem.name"-->
+            <!--                   required name="name" #nameControl="ngModel"/>-->
+            <div>
+              <kendo-dropdownlist
+                [data]="listItems"
+                [defaultItem]="{ text: 'Select Item', value: null }"
+                [filterable]="true"
+                [textField]="'text'"
+                [valueField]="'value'"
+                (filterChange)="handleFilterItem($event)"
+                [(ngModel)]="newItem.loanitem"
+                name="loanitem"
+
+              >
+              </kendo-dropdownlist>
+              <a routerLink="/settings/category"> add Item </a>
+            </div>
+
+          </div>
+          <div class="col-md-6 form-group">
+
+            <label>Borrower</label>
+            <!--            <input class="form-control mb-2 mr-sm-2" id="birthplace" type="text" placeholder="birthplace"-->
+            <!--                   [(ngModel)]="newItem.birth_place"-->
+            <!--                   required name="birthplace" #birthplaceControl="ngModel"/>-->
+            <div>
+              <kendo-dropdownlist
+                [data]="listBorrower"
+                [defaultItem]="{ text: 'Select Borrower', value: null }"
+                [filterable]="true"
+                [textField]="'text'"
+                [valueField]="'value'"
+                (filterChange)="handleFilterBorrower($event)"
+              >
+              </kendo-dropdownlist>
+              <a routerLink="/settings/category"> add Borrower </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card card-default">
+      <div class="card-header">Principal </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6 form-group">
+
+            <label>Disbursed By </label>
+            <!--            <input class="form-control mb-2 mr-sm-2" id="surname" type="text" placeholder="surname"-->
+            <!--                   [(ngModel)]="newItem.sur_name"-->
+            <!--                   required name="surname" #surnameControl="ngModel"/>-->
+            <div>
+              <kendo-dropdownlist
+                [data]="listPaymentType"
+                [value]="'Select Type'"
+              >
+              </kendo-dropdownlist>
+            </div>
+            <!--            <div *ngIf="createForm.submitted && surnameControl.invalid">-->
+            <!--              <span *ngIf="surnameControl?.errors.required" class="text-danger">This field is required</span>-->
+            <!--            </div>-->
+          </div>
+          <div class="col-md-6 form-group">
+            <label>Principal Amount *</label>
+            <div>
+              <kendo-numerictextbox
+                [value]="0"
+                required
+                [(ngModel)]="newItem.pamount"
+                name="pamount"
+                #pamount1="ngModel"
+              >
+              </kendo-numerictextbox>
+            </div>
+            <div *ngIf="createForm.submitted && pamount1.invalid">
+              <span *ngIf="pamount1?.errors.required" class="text-danger">This field is required</span>
+
+            </div>
+          </div>
+        </div>
+        <div class="row">
+
+          <div class="col-md-6 form-group">
+
+            <label>Loan Release Date</label>
+            <div>
+              <kendo-datepicker
+                [(value)]="loanReleaseDate"
+              ></kendo-datepicker>
+            </div>
+          </div>
+          <div class="col-md-6 form-group">
+
+            <label>Loan Duration (in Months) </label>
+            <div>
+              <kendo-numerictextbox
+                [value]="0">
+              </kendo-numerictextbox>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="card card-default">
+      <div class="card-header">Loan Fees</div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12 form-group">
+            <label>Application Fee</label>
+            <div>
+              <kendo-numerictextbox
+                [value]="0">
+              </kendo-numerictextbox>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card card-default">
+      <div class="card-header">Loan Status</div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-12 form-group">
+            <label>Loan Status</label>
+            <div>
+              <kendo-dropdownlist
+                [data]="listLoanStatus"
+                [value]="'Select status'"
+              >
+              </kendo-dropdownlist>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card-default">
+      <div class="card-header">Repayments </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6 form-group">
+            <label>Repayment Cycle</label>
+            <div>
+              <kendo-dropdownlist
+                [data]="listRepaymentCycle"
+                [value]="'Select Cycle'"
+              >
+              </kendo-dropdownlist>
+            </div>
+          </div>
+
+
+          <div class="col-md-6 form-group">
+            <label>Number of Repayments</label>
+            <div>
+              <kendo-numerictextbox
+                [value]="1">
+              </kendo-numerictextbox>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="card card-default">
+      <div class="card-header">Loan Attachment</div>
+      <div class="card-body">
+
+        <div class="row">
+          <div class="col-md-12 form-group">
+            <label>Loan Attachments</label>
+            <div>
+              <kendo-upload
+                [saveUrl]="uploadSaveUrl"
+                [removeUrl]="uploadRemoveUrl"
+                [autoUpload]="false">
+              </kendo-upload>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" style="
+              float: right;
+              margin-top: -58px;
+          ">
+          <div class="col-md-12">
+            <div>
+              <button class="btn btn-primary m-5" style="
+                      height: 42px;
+                      width: 122px;
+                  " type="submit">Add Request
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>

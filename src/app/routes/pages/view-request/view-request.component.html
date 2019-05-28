@@ -1,0 +1,37 @@
+<kendo-grid
+  [filterable]="true"
+  [sortable]="true"
+  [height]="410"
+>
+  <ng-template kendoGridToolbarTemplate>
+    <button class="btn btn-green" (click)="addnew()">Add new</button>
+  </ng-template>
+
+  <kendo-grid-column field="requestid" editor="numeric" width="130" [editable]="false"></kendo-grid-column>
+  <kendo-grid-column field="provider"  editor="text" width="130"></kendo-grid-column>
+  <kendo-grid-column field="customer"  editor="text" width="130"></kendo-grid-column>
+  <kendo-grid-column field="item"  editor="text" width="130"></kendo-grid-column>
+  <kendo-grid-column field="disbursedby"  editor="text" width="130"></kendo-grid-column>
+  <kendo-grid-column field="releaseDate"  editor="text" width="130"></kendo-grid-column>
+  <kendo-grid-column field="principalAmount"  editor="numeric" width="130"></kendo-grid-column>
+  <kendo-grid-column field="LoanDuration"  editor="numeric" width="130"></kendo-grid-column>
+  <kendo-grid-column field="status"  editor="text" width="130"></kendo-grid-column>
+  <kendo-grid-column field="Due"  editor="numeric" width="130"></kendo-grid-column>
+  <kendo-grid-column field="balance"  editor="numeric" width="130"></kendo-grid-column>
+  <kendo-grid-column field="fees"  editor="numeric" width="130"></kendo-grid-column>
+  <kendo-grid-column field="repayment"  editor="numeric" width="130"></kendo-grid-column>
+
+  <kendo-grid-command-column title="command" width="220">
+    <ng-template kendoGridCellTemplate let-isNew="isNew" let-dataItem>
+      <!-- edit command directive, will be visible when not in edit mode -->
+      <button kendoGridEditCommand [primary]="true">Edit</button>
+      <!-- remove command directive, will be visible when not in edit mode -->
+      <button kendoGridRemoveCommand>Delete</button>
+      <!-- save command directive, will be visible when in edit mode -->
+      <button kendoGridSaveCommand>Save</button>
+      <!-- cancel command directive, will be visible when in edit mode -->
+      <button kendoGridCancelCommand>{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
+      <button class="btn btn-green" (click)="edit(dataItem)">Edit2</button>
+    </ng-template>
+  </kendo-grid-command-column>
+</kendo-grid>

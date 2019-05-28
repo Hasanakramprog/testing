@@ -8,7 +8,7 @@ import {Error404Component} from './error404/error404.component';
 import {Error500Component} from './error500/error500.component';
 import {CustomersComponent} from './customers/customers.component';
 import {ViewCustomersComponent} from './view-customers/view-customers.component';
-import {BodyModule, GridModule, SharedModule} from '@progress/kendo-angular-grid';
+import {BodyModule, GridModule, RowFilterModule, SharedModule} from '@progress/kendo-angular-grid';
 import {DialogModule} from '@progress/kendo-angular-dialog';
 import {ItemsComponent} from './items/items.component';
 import {ViewItemsComponent} from './view-items/view-items.component';
@@ -16,7 +16,10 @@ import {BranchComponent} from './branch/branch.component';
 import {ViewBranchComponent} from './view-branch/view-branch.component';
 import {RemoteBindingDirective} from './directives/remote-binding.directive';
 import {CustomerService} from './directives/data.service';
-
+import { RequestComponent } from './request/request.component';
+import { ViewRequestComponent } from './view-request/view-request.component';
+import {ComboBoxModule, DropDownListModule} from '@progress/kendo-angular-dropdowns';
+import {UploadModule} from '@progress/kendo-angular-upload';
 
 /* Use this routes definition in case you want to make them lazy-loaded */
 const routes: Routes = [
@@ -30,6 +33,8 @@ const routes: Routes = [
   {path: 'customer/edit/:id', component: CustomersComponent},
   {path: 'item/edit/:id', component: ItemsComponent},
   {path: 'branch/edit/:id', component: BranchComponent},
+  {path: 'request/view', component: ViewRequestComponent},
+  {path: 'request/add', component: RequestComponent},
   {path: '404', component: Error404Component},
   {path: '500', component: Error500Component},
 ];
@@ -41,7 +46,11 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule,
     BodyModule,
-    DialogModule
+    DialogModule,
+    ComboBoxModule,
+    UploadModule,
+    DropDownListModule,
+    RowFilterModule
   ],
   declarations: [
     LoginComponent,
@@ -55,6 +64,8 @@ const routes: Routes = [
     BranchComponent,
     ViewBranchComponent,
     RemoteBindingDirective,
+    RequestComponent,
+    ViewRequestComponent,
 
   ],
   exports: [

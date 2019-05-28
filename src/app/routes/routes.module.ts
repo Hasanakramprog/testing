@@ -30,6 +30,7 @@ export class RoutesModule {
     // } else {
     //   menuService.addMenu(menu2);
     // }
+    menuService.addMenu(menu);
 
   }
 }

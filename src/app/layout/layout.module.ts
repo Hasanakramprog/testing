@@ -45,13 +45,13 @@ export class LayoutModule {
   role;
 
   constructor(public menuService: MenuService, tr: TranslatorService) {
-    this.role = localStorage.getItem('role').toString();
-    console.log(this.role);
-    if (this.role == 'admin') {
-      menuService.addMenu(menu);
-    } else {
-      menuService.addMenu(menu2);
-    }
+    // this.role = localStorage.getItem('role').toString();
+    // console.log(this.role);
+    // if (this.role == 'admin') {
+    //   menuService.addMenu(menu);
+    // } else {
+    //   menuService.addMenu(menu2);
+    // }
 
   }
 

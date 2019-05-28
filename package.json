@@ -36,6 +36,8 @@
     "@progress/kendo-angular-intl": "^1.0.0",
     "@progress/kendo-angular-l10n": "^1.1.0",
     "@progress/kendo-angular-popup": "^2.0.0",
+    "@progress/kendo-angular-treeview": "^3.1.1",
+    "@progress/kendo-angular-upload": "^4.3.1",
     "@progress/kendo-data-query": "^1.0.0",
     "@progress/kendo-drawing": "^1.0.0",
     "@progress/kendo-theme-default": "latest",

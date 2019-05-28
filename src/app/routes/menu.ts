@@ -6,15 +6,22 @@ const headingMain = {
 const Settings = {
   text: 'Settings',
   link: '/settings',
-  icon: 'icon-chemistry',
+  icon: 'icon-settings',
   submenu: [
     {
       text: 'Plan',
-      link: '/settings/plans'
+      link: '/settings/plans',
+      icon: 'icon-notebook'
     },
     {
       text: 'Fees Config',
-      link: '/settings/fees_config'
+      link: '/settings/fees_config',
+      icon: 'icon-wallet'
+    },
+    {
+      text: 'Category',
+      link: '/settings/category',
+      icon: 'icon-list'
     }
   ]
 };
@@ -54,7 +61,7 @@ const Items = {
   ]
 };
 const branch = {
-  text: 'Branchs',
+  text: 'Branches',
   link: '/branch',
   icon: 'icon-vector',
   submenu: [
@@ -70,11 +77,29 @@ const branch = {
     }
   ]
 };
+const Requests = {
+  text: 'Requests',
+  link: '/pages/Request',
+  icon: 'icon-note',
+  submenu: [
+    {
+      text: 'List',
+      link: '/pages/request/view',
+      icon: 'icon-eye'
+    },
+    {
+      text: 'Add',
+      link: '/pages/request/add',
+      icon: 'icon-plus'
+    }
+  ]
+};
 export const menu = [
   headingMain,
-  Settings,
+  Requests,
   Customers,
+  branch,
   Items,
-  branch
+  Settings,
 
 ];

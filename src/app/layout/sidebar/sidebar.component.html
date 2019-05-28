@@ -36,7 +36,7 @@
                         <span>{{(item.translate | translate) || item.text}}</span>
                 </a>
                 <!-- SUBLEVEL -->
-                <ul *ngIf="item.submenu" class="sidebar-nav sidebar-subnav" [routerLinkActive]="['opening']">
+                <ul *ngIf="item.submenu" class="sidebar-nav sidebar-subnav ml-3" [routerLinkActive]="['opening']">
                     <li class="sidebar-subnav-header">{{(item.translate | translate) || item.text}}</li>
                     <li *ngFor='let subitem of item.submenu' [routerLinkActive]="['active']">
                         <!-- sublevel: external links -->

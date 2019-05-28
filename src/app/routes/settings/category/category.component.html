@@ -1,0 +1,85 @@
+<div class="card card-default">
+
+  <div class="card-header">Categories</div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-3">
+        <kendo-treeview
+          [nodes]="items"
+          textField="name"
+          (selectionChange)="handleSelection($event)"
+          (nodeDblClick)="handleDblClick($event)"
+          kendoTreeViewExpandable
+          kendoTreeViewSelectable
+          kendoTreeViewHierarchyBinding
+          childrenField="children">
+        </kendo-treeview>
+      </div>
+
+
+
+      <div *ngIf="flag" class="col-md-9">
+        <form (ngSubmit)="create(createForm)" #createForm="ngForm">
+          <div class="row">
+            <div class="col-md-4 form-group">
+              <label for="title">Name</label>
+              <input class="form-control mb-2 mr-sm-2" id="title" type="text" placeholder="Title" [(ngModel)]="newItem.name"
+                     required name="title" #titleControl="ngModel"/>
+              <div *ngIf="createForm.submitted && titleControl.invalid">
+                <span *ngIf="titleControl?.errors.required" class="text-danger">This field is required</span>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-md-2 form-group">
+            <button class="btn btn-primary mb-2" type="submit">Add</button>
+          </div>
+        </form>
+        <div style="margin-top: 50px">
+          <p>
+            Note : Click A Category To Edit And Double Click To Add Subcategory !
+          </p>
+        </div>
+      </div>
+
+
+      <div *ngIf="selectedItem && !flag" class="col-md-9">
+        <form (ngSubmit)="update(editForm)" #editForm="ngForm">
+          <div class="row">
+            <div class="col-md-4 form-group">
+              <label for="editFrom">Name</label>
+              <input class="form-control mb-2 mr-sm-2" id="editFrom" type="text" placeholder="From"
+                     [(ngModel)]="selectedItem.name" required name="editFrom" #editFromControl="ngModel" />
+
+              <div *ngIf="editForm.submitted && editFromControl.invalid">
+                <span *ngIf="editFromControl.errors.required" class="text-danger">This field is required</span>
+
+              </div>
+            </div>
+          </div>
+          <div>
+            <button class="btn btn-primary mb-2" type="submit">Update</button>
+
+            <a href="javascript:void(0)" class="btn btn-danger ml-2 mb-2" popoverTitle='Delete'
+               popoverMessage='Are you sure  ?' mwlConfirmationPopover placement="right" (confirm)="delete()">Delete</a>
+          </div>
+        </form>
+
+        <div style="margin-top: 50px">
+          <p>
+            Note : Click A Category To Edit And Double Click To Add Subcategory !
+          </p>
+        </div>
+
+      </div> <!--ngif-->
+    </div>
+    <div style="margin-top: 20px ; margin-bottom: 20px;">
+      <button class="btn btn-primary mb-2" type="submit" (click)="handleDblClick()" >Add Root Category</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
